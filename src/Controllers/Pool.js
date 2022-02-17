@@ -11,7 +11,7 @@ const PostPool = async (req,res) => {
 		const time = newExpire.toTimeString().split(' ')[0];
 		expireAt = `${date} ${time}`
 	}
-	
+
 	try {
 		await db.collection("pools").insertOne({title,expireAt})
 		return res.sendStatus(201)
@@ -21,4 +21,13 @@ const PostPool = async (req,res) => {
 
 };
 
-export {PostPool}
+const GetPools = async (req,res) => {
+	try {
+		const pools = await db.collection('pools').find().toArray();
+		return res.send(pools)
+	} catch(err) {
+		return res.sendStatus(err)
+	}
+}
+
+export {PostPool, GetPools}
