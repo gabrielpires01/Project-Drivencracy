@@ -30,6 +30,24 @@ const PostChoice = async (req,res) => {
 	} catch (err) {
 		return console.error(err)
 	}
-}
+};
 
-export default PostChoice;
+const GetChoices = async(req,res) => {
+	const {id} = req.params;
+	try {
+		const pool = await db.collection('pools').findOne({_id:new ObjectId(id)})
+		if (!pool) return res.sendStatus(404)
+	} catch (err) {
+		console.error(err)
+		return 
+	}
+	try {
+		const choices = await db.collection('choices').find({poolId: id}).toArray();
+		return res.send(choices)
+	}catch(err) {
+		console.error(err)
+		return 
+	}
+};
+
+export {PostChoice, GetChoices};
