@@ -29,7 +29,7 @@ const PostChoice = async (req,res) => {
 		return res.send(choice).sendStatus(201)
 	} catch (err) {
 		console.error(err)
-		return res.sendStatus(400)
+		return res.send(err)
 	}
 };
 
@@ -47,7 +47,7 @@ const GetChoices = async(req,res) => {
 		return res.send(choices)
 	}catch(err) {
 		console.error(err)
-		return res.sendStatus(400)
+		return res.send(err)
 	}
 };
 
@@ -68,7 +68,7 @@ const PostVote = async(req,res) => {
 		return res.sendStatus(201)
 	}catch(err) {
 		console.error(err)
-		return res.sendStatus(400)
+		return res.send(err)
 	}
 }
 
