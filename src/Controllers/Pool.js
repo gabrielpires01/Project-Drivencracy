@@ -8,7 +8,7 @@ const PostPool = async (req,res) => {
 		let newExpire = new Date().setDate(today.getDate() + 30)
 		newExpire = new Date(newExpire);
 		const date = newExpire.toISOString().split('T')[0];
-		const time = newExpire.toTimeString().split(' ')[0];
+		const time = newExpire.toTimeString().split(' ')[0].slice(0,5);
 		expireAt = `${date} ${time}`
 	}
 
